@@ -34,7 +34,7 @@ public class AssignmentCommandService(IAssignmentRepository repository, IUnitOfW
     {
         
 
-        var student = await srepository.FindStudentById(command.studentId);
+        var student = await srepository.FindStudentByIdAsync(command.studentId);
 
         if (student == null)
         {
@@ -68,21 +68,14 @@ public class AssignmentCommandService(IAssignmentRepository repository, IUnitOfW
             throw new Exception($"Assignment with Student ID {command.studentId} already exists.");
         }
         
+        var idParent = student.GetParentId();
         
-        var siblings = await srepository.FindSiblingsByParentIdAsync(student.ParentId);
-        var siblingIds = siblings.Select(s => s.Id).ToList();
-        
-        
-        var assignedSiblingIds = siblingIds.Where(id => repository.ExistsByStudentIdAsync(id).Result).ToList();
-        
-        if (assignedSiblingIds.Count > 0)
+        if (await srepository.ExistsByParentIdAsync(idParent))
         {
-            var allAssigned = await repository.AreStudentsAssignedToBus(assignedSiblingIds, command.busId);
-            if (!allAssigned)
-            {
-                throw new Exception("Siblings of the student must all be assigned to the same bus.");
-            }
+            throw new Exception($"Parent with ID {idParent} already has a student assigned in another bus. Siblings cannot be assigned to the same bus.");
         }
+        
+        
 
         var Assignment = new Assignment(command);
         

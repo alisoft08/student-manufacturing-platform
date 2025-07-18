@@ -17,7 +17,7 @@ namespace eb4395u202312031.Assets.Interfaces.REST;
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
-[SwaggerTag("Available Bus Endpoints.")]
+[SwaggerTag("Available Buses Endpoints.")]
 public class BusesController(IBusCommandService BusCommandService, IBusQueryService BusQueryService)
     : ControllerBase
 {

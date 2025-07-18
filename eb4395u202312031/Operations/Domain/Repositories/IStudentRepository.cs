@@ -16,12 +16,12 @@ public interface IStudentRepository : IBaseRepository<Student>
     /// </summary>
     /// <param name="studentId">The unique identifier of the student.</param>
     /// <returns>The student entity if found; otherwise, null.</returns>
-    Task<Student?> FindStudentById(int studentId);
+    Task<Student?> FindStudentByIdAsync(int studentId);
     
     /// <summary>
     /// Finds all students who share the same parent identifier.
     /// </summary>
     /// <param name="parentId">The parent identifier to search siblings for.</param>
     /// <returns>A collection of students with the same parent identifier.</returns>
-    Task<IEnumerable<Student>> FindSiblingsByParentIdAsync(int parentId);
+    Task<bool> ExistsByParentIdAsync(int parentId);
 }

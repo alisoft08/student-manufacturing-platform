@@ -12,7 +12,7 @@ public class StudentQueryService(IStudentRepository Repository) : IStudentQueryS
     public async Task<Student?> Handle(GetStudentByStudentId query)
     {
 
-        return await Repository.FindStudentById(query.StudentId);
+        return await Repository.FindStudentByIdAsync(query.StudentId);
 
 
     }

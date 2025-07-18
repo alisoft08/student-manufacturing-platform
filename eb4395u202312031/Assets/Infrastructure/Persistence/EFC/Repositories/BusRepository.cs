@@ -13,8 +13,8 @@ public class BusRepository(AppDbContext context) : BaseRepository<Bus>(context),
     public async Task<bool> ExistsByVehiclePlateAsync(string vehiclePlate)
     {
         return await Context.Set<Bus>()
-            .AnyAsync(Assignment =>
-                Assignment.VehiclePlate == vehiclePlate);
+            .AnyAsync(b =>
+                b.VehiclePlate == vehiclePlate);
     }
 
     public async Task<Bus?> FindBusByIdAsync(int busId)

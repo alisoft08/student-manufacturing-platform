@@ -43,18 +43,4 @@ public class AssignmentRepository(AppDbContext context)
             .CountAsync(a => a.BusId == busId);
     }
 
-    /// <summary>
-    /// Verifies if all specified students are assigned to the given bus.
-    /// </summary>
-    /// <param name="studentIds">A list of student identifiers to check.</param>
-    /// <param name="busId">The unique identifier of the bus.</param>
-    /// <returns>True if all students are assigned to the bus; otherwise, false.</returns>
-    public async Task<bool> AreStudentsAssignedToBus(List<int> studentIds, int busId)
-    {
-        var count = await Context.Set<Assignment>()
-            .Where(a => a.BusId == busId && studentIds.Contains(a.StudentId))
-            .CountAsync();
-
-        return count == studentIds.Count;
-    }
 }

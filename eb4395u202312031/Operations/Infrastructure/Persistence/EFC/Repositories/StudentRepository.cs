@@ -21,20 +21,18 @@ public class StudentRepository(AppDbContext context) : BaseRepository<Student>(c
     /// </summary>
     /// <param name="studentId">The unique identifier of the student.</param>
     /// <returns>The student entity if found; otherwise, null.</returns>
-    public async Task<Student?> FindStudentById(int studentId)
-    {
+   
+
+    public async Task<Student?> FindStudentByIdAsync(int studentId)
+    { 
         return await Context.Set<Student>().FirstOrDefaultAsync(sn => sn.Id == studentId);
     }
+    
 
-    /// <summary>
-    /// Finds all students who share the same parent identifier.
-    /// </summary>
-    /// <param name="parentId">The parent identifier to search siblings for.</param>
-    /// <returns>A collection of students with the same parent identifier.</returns>
-    public async Task<IEnumerable<Student>> FindSiblingsByParentIdAsync(int parentId)
+    public async Task<bool> ExistsByParentIdAsync(int parentId)
     {
         return await Context.Set<Student>()
-            .Where(s => s.ParentId == parentId)
-            .ToListAsync();
+            .AnyAsync(s =>
+                s.ParentId == parentId);
     }
 }

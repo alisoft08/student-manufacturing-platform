@@ -31,14 +31,4 @@ public interface IAssignmentRepository : IBaseRepository<Assignment>
     /// </remarks>
     Task<int> CountByBusIdAsync(int busId);
 
-    /// <summary>
-    /// Checks if all specified students are assigned to a given bus.
-    /// </summary>
-    /// <param name="studentIds">List of student IDs to check.</param>
-    /// <param name="busId">The bus ID to check assignments for.</param>
-    /// <returns>True if all students are assigned to the bus; otherwise, false.</returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
-    Task<bool> AreStudentsAssignedToBus(List<int> studentIds, int busId);
 }

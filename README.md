@@ -1,7 +1,7 @@
-﻿# FIRSTstudentManufacturingPlatform Platform
+﻿# First Student Manufacturing Platform
 
 ## Summary
-FIRSTstudentManufacturingPlatform Platform API,
+First Student Manufacturing Platform API,
 made with Microsoft C#, ASP.NET Core, Entity Framework Core and MySQL persistence.
 It also illustrates open-api documentation configuration and integration with Swagger UI.
 
@@ -28,26 +28,27 @@ The Assets Context is responsible for managing the buses. It includes the follow
 - Bus querying by ID
 - Bus seat management
 
-This context includes also an anti-corruption layer to communicate with the Operations Context.
-The anti-corruption layer is responsible
-for managing the communication between the Assets Context and the Operations Context.
-It offers the following capabilities to other bounded contexts:
+This context also includes an anti-corruption layer to communicate with the Operations Context. The anti-corruption layer is responsible for managing the communication between the Assets Context and the Operations Context. It offers the following capabilities to other bounded contexts:
 
 - Fetch bus by ID
 - Fetch number of seats by bus ID
 
 ### Operations Context
 
-The Operations Context is responsible for managing assignments between students and buses.
-Its features include:
+The Operations Context is responsible for managing the assignments between students and buses. Its main features include:
 
-- Assignment creation
-- Assignment validation (siblings assigned to same bus)
-- Assignment querying
+- Creation of assignments between students and buses
+- Querying assignments by ID
+- Listing all assignments
+- Unassigning students from buses
+- Validation of assignment rules (e.g., seat availability, student eligibility)
+- Integration with the Assets Context to verify bus information
 
+This context ensures that each assignment respects business rules and maintains data consistency across the platform. It acts as the core for operational processes, coordinating interactions between students and assets (buses).
 
-The Students feature is responsible for managing student information and relationships.
-Its features include:
+### Students Context
+
+The Students feature is responsible for managing student information and relationships. Its features include:
 
 - Student creation and seeding
 - Student querying
