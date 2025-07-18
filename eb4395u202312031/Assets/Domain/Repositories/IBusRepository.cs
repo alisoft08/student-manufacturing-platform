@@ -31,13 +31,5 @@ public interface IBusRepository : IBaseRepository<Bus>
     /// </remarks>
     Task<Bus?> FindBusByIdAsync(int busId);
 
-    /// <summary>
-    /// Finds the number of seats for a bus by its ID.
-    /// </summary>
-    /// <param name="busId">The bus ID to search for.</param>
-    /// <returns>The number of seats for the bus.</returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
-    Task<int> FindNumberOfSeatsByBusIdAsync(int busId);
+    
 }

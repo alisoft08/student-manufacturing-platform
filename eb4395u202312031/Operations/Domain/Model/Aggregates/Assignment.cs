@@ -19,7 +19,6 @@ public partial class Assignment
     public DateTime AssignedAt { get; set; } = DateTime.Now;
     
     public Assignment() { }
-
     public Assignment(int studentId, int busId)
     {
         StudentId = studentId;

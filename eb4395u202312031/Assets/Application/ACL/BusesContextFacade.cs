@@ -7,15 +7,8 @@ namespace eb4395u202312031.Assets.Application.ACL;
 
 public class BusesContextFacade(IBusQueryService BusQueryService) : IBusesContextFacade
 {
-    
-    // public async Task<int> FetchBusByBusNumberAsync(Guid BusNumber)
-    // {
-    //     var getBusByBusNumber = new GetBusByBusNumberQuery(BusNumber);
-    //     var Bus = await BusQueryService.Handle(getBusByBusNumber);
-    //     return Bus?.Id ?? 0;
-    // }
 
-
+    /// <inheritdoc />
     public async Task<int> FetchBusByIdAsync(int busId)
     {
         var getBusById = new GetBusByIdQuery(busId);
@@ -23,7 +16,7 @@ public class BusesContextFacade(IBusQueryService BusQueryService) : IBusesContex
         return Bus?.Id ?? 0;
     }
 
-    
+    /// <inheritdoc />
     public async Task<int> FetchNumberOfSeatsByBusIdAsync(int busId)
     {
         var getBusById = new GetBusByIdQuery(busId);

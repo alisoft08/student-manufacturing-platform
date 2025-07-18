@@ -21,12 +21,7 @@ public class BusRepository(AppDbContext context) : BaseRepository<Bus>(context),
     {
         return await Context.Set<Bus>().FirstOrDefaultAsync(sn => sn.Id == busId);
     }
-
-    public async Task<int> FindNumberOfSeatsByBusIdAsync(int busId)
-    {
-        var bus = await Context.Set<Bus>().FirstOrDefaultAsync(b => b.Id == busId);
-        return bus?.TotalSeats ?? 0;
-    }
+    
 
     
 }

@@ -50,6 +50,7 @@ public class AssignmentCommandService(IAssignmentRepository repository, IUnitOfW
             throw new Exception($"Bus with ID {command.busId} not found.");
         }
         
+        
         var busNumberOfSeats = await facade.FetchNumberOfSeatsByBusIdAsync(command.busId);
         
         var cantByBusId = await repository.CountByBusIdAsync(command.busId);
@@ -70,10 +71,12 @@ public class AssignmentCommandService(IAssignmentRepository repository, IUnitOfW
         
         var idParent = student.GetParentId();
         
+        
         if (await srepository.ExistsByParentIdAsync(idParent))
         {
-            throw new Exception($"Parent with ID {idParent} already has a student assigned in another bus. Siblings cannot be assigned to the same bus.");
+            throw new Exception($"Parent with ID {idParent} already has a student assigned in another bus. Siblings cannot be assigned to different buses.");
         }
+        
         
         
 
