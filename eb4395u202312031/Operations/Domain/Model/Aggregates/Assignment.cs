@@ -25,11 +25,22 @@ public partial class Assignment
         BusId = busId;
     }
 
-
+    public Student Student { get; set; } 
     public Assignment(CreateAssignmentCommand command)
     {
         StudentId = command.studentId;
         BusId = command.busId;
+    }
+    /// <summary>
+    /// Gets the bus identifier for the Assignment.
+    /// </summary>
+    /// <returns>The bus identifier.</returns>
+    /// <remarks>
+    /// Alison Jimena Arrieta Quispe
+    /// </remarks>
+    public int GetBusId()
+    {
+        return BusId;
     }
     
 }

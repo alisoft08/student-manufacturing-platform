@@ -3,9 +3,6 @@ using eb4395u202312031.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using eb4395u202312031.Manufacturing.Domain.Model.Aggregates;
 using eb4395u202312031.Manufacturing.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace eb4395u202312031.Manufacturing.Infrastructure.Persistence.EFC.Repositories;
 
@@ -43,4 +40,9 @@ public class AssignmentRepository(AppDbContext context)
             .CountAsync(a => a.BusId == busId);
     }
 
+    public async Task<Assignment?> FindByStudentIdAsync(int studentId)
+    {
+        return await Context.Set<Assignment>()
+            .FirstOrDefaultAsync(a => a.StudentId == studentId);
+    }
 }

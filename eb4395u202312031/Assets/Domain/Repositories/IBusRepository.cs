@@ -21,15 +21,7 @@ public interface IBusRepository : IBaseRepository<Bus>
     /// </remarks>
     Task<bool> ExistsByVehiclePlateAsync(string vehiclePlate);
 
-    /// <summary>
-    /// Finds a bus by its unique identifier.
-    /// </summary>
-    /// <param name="busId">The bus ID to search for.</param>
-    /// <returns>The bus if found; otherwise, null.</returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
-    Task<Bus?> FindBusByIdAsync(int busId);
+  
 
     
 }

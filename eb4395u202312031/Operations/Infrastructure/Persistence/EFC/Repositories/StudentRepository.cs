@@ -1,6 +1,5 @@
 using eb4395u202312031.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using eb4395u202312031.API.Shared.Infrastructure.Persistence.EFC.Repositories;
-using eb4395u202312031.Manufacturing.Domain.Model.Aggregates;
 using eb4395u202312031.Manufacturing.Domain.Repositories;
 using eb4395u202312031.Operations.Domain.Model.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -21,18 +20,9 @@ public class StudentRepository(AppDbContext context) : BaseRepository<Student>(c
     /// </summary>
     /// <param name="studentId">The unique identifier of the student.</param>
     /// <returns>The student entity if found; otherwise, null.</returns>
-   
 
-    public async Task<Student?> FindStudentByIdAsync(int studentId)
-    { 
-        return await Context.Set<Student>().FirstOrDefaultAsync(sn => sn.Id == studentId);
-    }
-    
-
-    public async Task<bool> ExistsByParentIdAsync(int parentId)
+    public async Task<Student?> FindByParentIdAsync(int parentId)
     {
-        return await Context.Set<Student>()
-            .AnyAsync(s =>
-                s.ParentId == parentId);
+        return await Context.Set<Student>().FirstOrDefaultAsync(sn => sn.ParentId == parentId);
     }
 }

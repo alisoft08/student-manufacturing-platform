@@ -12,7 +12,7 @@ public class BusQueryService(IBusRepository repository) : IBusQueryService
 
     public async Task<Bus?> Handle(GetBusByIdQuery query)
     {
-        return await repository.FindBusByIdAsync(query.Id);
+        return await repository.FindByIdAsync(query.Id);
         
     }
 }

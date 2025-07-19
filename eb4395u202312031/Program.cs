@@ -10,7 +10,6 @@ using eb4395u202312031.Assets.Domain.Services;
 using eb4395u202312031.Assets.Infrastructure.Persistence.EFC.Repositories;
 using eb4395u202312031.Assets.Interfaces.ACL;
 using eb4395u202312031.Manufacturing.Application.Internal.CommandServices;
-using eb4395u202312031.Manufacturing.Application.Internal.QueryServices;
 using eb4395u202312031.Manufacturing.Domain.Repositories;
 using eb4395u202312031.Manufacturing.Domain.Services;
 using eb4395u202312031.Manufacturing.Infrastructure.Persistence.EFC.Repositories;
@@ -56,7 +55,7 @@ builder.Services.AddSwaggerGen(options =>
         {
             Title = "FIRSTstudentManufacturingPlatform.API",
             Version = "v1",
-            Description = "FIRSTstudent Manufacturing Platform API",
+            Description = "FIRST Student Manufacturing Platform API",
             TermsOfService = new Uri("https://firststudentinc.com/"),
             Contact = new OpenApiContact
             {
@@ -84,7 +83,6 @@ builder.Services.AddScoped<IAssignmentRepository, AssignmentRepository>();
 builder.Services.AddScoped<IAssignmentCommandService, AssignmentCommandService>();
 
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-builder.Services.AddScoped<IStudentQueryService, StudentQueryService>();
 
 var app = builder.Build();
 

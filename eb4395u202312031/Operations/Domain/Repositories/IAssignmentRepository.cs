@@ -30,5 +30,7 @@ public interface IAssignmentRepository : IBaseRepository<Assignment>
     /// Alison Jimena Arrieta Quispe
     /// </remarks>
     Task<int> CountByBusIdAsync(int busId);
+    
+    Task<Assignment?> FindByStudentIdAsync(int studentId);
 
 }

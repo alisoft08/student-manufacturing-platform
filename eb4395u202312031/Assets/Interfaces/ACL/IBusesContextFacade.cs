@@ -1,4 +1,6 @@
-﻿namespace eb4395u202312031.Assets.Interfaces.ACL;
+﻿using eb4395u202312031.Assets.Domain.Model.Aggregates;
+
+namespace eb4395u202312031.Assets.Interfaces.ACL;
 
 /// <summary>
 /// Facade interface for accessing bus-related information from the Assets context.

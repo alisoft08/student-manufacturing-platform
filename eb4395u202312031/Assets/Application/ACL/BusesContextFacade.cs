@@ -1,4 +1,5 @@
-﻿using eb4395u202312031.Assets.Domain.Model.Queries;
+﻿using eb4395u202312031.Assets.Domain.Model.Aggregates;
+using eb4395u202312031.Assets.Domain.Model.Queries;
 using eb4395u202312031.Assets.Domain.Services;
 using eb4395u202312031.Assets.Interfaces.ACL;
 

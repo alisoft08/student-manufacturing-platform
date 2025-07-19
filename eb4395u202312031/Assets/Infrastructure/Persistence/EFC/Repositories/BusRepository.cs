@@ -16,12 +16,5 @@ public class BusRepository(AppDbContext context) : BaseRepository<Bus>(context),
             .AnyAsync(b =>
                 b.VehiclePlate == vehiclePlate);
     }
-
-    public async Task<Bus?> FindBusByIdAsync(int busId)
-    {
-        return await Context.Set<Bus>().FirstOrDefaultAsync(sn => sn.Id == busId);
-    }
-    
-
     
 }
