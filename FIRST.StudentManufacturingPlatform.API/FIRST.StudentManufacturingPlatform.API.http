@@ -1,0 +1,6 @@
+@FIRST.StudentManufacturingPlatform.API_HostAddress = http://localhost:5185
+
+GET {{FIRST.StudentManufacturingPlatform.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

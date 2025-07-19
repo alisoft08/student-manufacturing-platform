@@ -1,0 +1,27 @@
+﻿using FIRST.StudentManufacturingPlatform.API.Assets.Domain.Model.Aggregates;
+using FIRST.StudentManufacturingPlatform.API.Shared.Domain.Repositories;
+
+namespace FIRST.StudentManufacturingPlatform.API.Assets.Domain.Repositories;
+
+/// <summary>
+/// Repository interface for Bus aggregate, providing methods for bus data access and queries.
+/// </summary>
+/// <remarks>
+/// Alison Jimena Arrieta Quispe
+/// </remarks>
+public interface IBusRepository : IBaseRepository<Bus>
+{
+    /// <summary>
+    /// Checks if a bus exists by its vehicle plate.
+    /// </summary>
+    /// <param name="vehiclePlate">The vehicle plate to check.</param>
+    /// <returns>True if a bus with the given vehicle plate exists; otherwise, false.</returns>
+    /// <remarks>
+    /// Alison Jimena Arrieta Quispe
+    /// </remarks>
+    Task<bool> ExistsByVehiclePlateAsync(string vehiclePlate);
+
+  
+
+    
+}
