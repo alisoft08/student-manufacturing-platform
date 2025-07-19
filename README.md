@@ -1,7 +1,7 @@
 ﻿# First Student Manufacturing Platform
 
 ## Summary
-First Student Manufacturing Platform API, built with Microsoft C#, ASP.NET Core, Entity Framework Core, and MySQL persistence. It also illustrates OpenAPI documentation configuration and integration with Swagger UI.
+First Student Manufacturing Platform API Application, built with Microsoft C#, ASP.NET Core, Entity Framework Core, and MySQL persistence. It also illustrates OpenAPI documentation configuration and integration with Swagger UI.
 
 ## Features
 - RESTful API
