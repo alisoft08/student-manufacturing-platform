@@ -61,11 +61,15 @@ public class AssignmentCommandService(IAssignmentRepository repository, IUnitOfW
         if (studentSibling != null)
         {
             var siblingAssignment = await repository.FindByStudentIdAsync(studentSibling.Id);
-            var siblingBusId = siblingAssignment.GetBusId();
-            if (siblingBusId != command.busId)
+            if (siblingAssignment != null)
             {
-                throw new Exception($"Sibling with ID {studentSibling.Id} is already assigned to a different bus with ID {siblingBusId}. Siblings cannot be assigned to different buses.");
+                var siblingBusId = siblingAssignment.GetBusId();
+                if (siblingBusId != command.busId)
+                {
+                    throw new Exception($"Sibling with ID {studentSibling.Id} is already assigned to a different bus with ID {siblingBusId}. Siblings cannot be assigned to different buses.");
+                }
             }
+
         }
         
         var Assignment = new Assignment(command);
