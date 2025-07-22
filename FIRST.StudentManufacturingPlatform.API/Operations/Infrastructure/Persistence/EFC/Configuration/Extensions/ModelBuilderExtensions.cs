@@ -4,9 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FIRST.StudentManufacturingPlatform.API.Operations.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
-
+/// <summary>
+/// Extension methods for ModelBuilder to configure entity mappings for the operations context.
+/// Contains configuration methods for Assignment and Student entities.
+/// </summary>
+/// <author>Alison Arrieta</author>
 public static class ModelBuilderExtensions
 {
+    /// <summary>
+    /// Applies configuration for the Assignment entity including primary key, required properties, and constraints.
+    /// </summary>
+    /// <param name="builder">The ModelBuilder instance to configure.</param>
+    /// <author>Alison Arrieta</author>
     public static void ApplyAssignmentConfiguration(this ModelBuilder builder)
     {
         builder.Entity<Assignment>().HasKey(t => t.Id);
@@ -16,14 +25,27 @@ public static class ModelBuilderExtensions
             .IsRequired()
             .ValueGeneratedOnAdd();
         
-        builder.Entity<Assignment>().Property(a => a.BusId).IsRequired();
-        builder.Entity<Assignment>().Property(a => a.StudentId).IsRequired();
-        builder.Entity<Assignment>().Property(a => a.AssignedAt).IsRequired();
+        builder.Entity<Assignment>()
+            .Property(a => a.BusId)
+            .IsRequired();
+        
+        builder.Entity<Assignment>()
+            .Property(a => a.StudentId)
+            .IsRequired();
+        
+        builder.Entity<Assignment>()
+            .Property(a => a.AssignedAt)
+            .IsRequired();
         
       
        
     }
     
+    /// <summary>
+    /// Applies configuration for the Student entity including primary key, required properties, and constraints.
+    /// </summary>
+    /// <param name="builder">The ModelBuilder instance to configure.</param>
+    /// <author>Alison Arrieta</author>
     public static void ApplyStudentConfiguration(this ModelBuilder builder)
     {
         builder.Entity<Student>().HasKey(t => t.Id);

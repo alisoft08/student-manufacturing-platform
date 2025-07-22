@@ -9,11 +9,10 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace FIRST.StudentManufacturingPlatform.API.Assets.Interfaces.REST;
 
 /// <summary>
-/// Exposes RESTful endpoints for managing Bus entities in the Assets context.
+/// REST API controller for managing bus operations in the student manufacturing platform.
+/// Provides endpoints for creating and retrieving bus information including vehicle details, fuel specifications, and seating capacity.
 /// </summary>
-/// <remarks>
-/// Alison Jimena Arrieta Quispe
-/// </remarks>
+/// <author>Alison Arrieta</author>
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
@@ -21,18 +20,12 @@ namespace FIRST.StudentManufacturingPlatform.API.Assets.Interfaces.REST;
 public class BusesController(IBusCommandService BusCommandService, IBusQueryService BusQueryService)
     : ControllerBase
 {
-   
-
     /// <summary>
-    /// Creates a new Bus entity based on the provided resource data.
+    /// Creates a new bus with the specified vehicle information and specifications.
     /// </summary>
-    /// <param name="resource">The resource containing the information required to create a Bus.</param>
-    /// <returns>
-    /// An HTTP 201 response with the created Bus resource if successful; otherwise, 400.
-    /// </returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
+    /// <param name="resource">The <see cref="CreateBusResource"/> containing the bus data including vehicle plate, fuel tank type, district ID, and total seats.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the created bus resource if successful, or a bad request response if creation fails.</returns>
+    /// <author>Alison Arrieta</author>
     [HttpPost]
     [SwaggerOperation("Create Bus", "Create a new Bus.", OperationId = "CreateBus")]
     [SwaggerResponse(201, "The Bus was created.", typeof(BusResource))]
@@ -47,13 +40,11 @@ public class BusesController(IBusCommandService BusCommandService, IBusQueryServ
     }
 
     /// <summary>
-    /// Retrieves a Bus entity by its ID.
+    /// Retrieves a specific bus by its unique identifier.
     /// </summary>
-    /// <param name="id">The ID of the Bus to retrieve.</param>
-    /// <returns>An HTTP 200 response with the Bus resource if found; otherwise, 404.</returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
+    /// <param name="id">The unique identifier of the bus to retrieve.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the bus resource if found, or a not found response if the bus doesn't exist.</returns>
+    /// <author>Alison Arrieta</author>
     [HttpGet("{id}")]
     [SwaggerOperation("Get Bus By Id", "Get a Bus by its ID", OperationId = "GetBusById")]
     [SwaggerResponse(200, "The Bus was found and returned", typeof(BusResource))]

@@ -4,9 +4,7 @@
 /// Facade interface for accessing bus-related information from the Assets context.
 /// Provides methods to fetch bus details and seat information for integration with other bounded contexts.
 /// </summary>
-/// <remarks>
-/// Alison Jimena Arrieta Quispe
-/// </remarks>
+/// <author>Alison Arrieta</author>
 public interface IBusesContextFacade
 {
     /// <summary>
@@ -16,9 +14,7 @@ public interface IBusesContextFacade
     /// <returns>
     /// The bus identifier as an integer if the bus is found; otherwise, 0.
     /// </returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
+    /// <author>Alison Arrieta</author>
     Task<int> FetchBusByIdAsync(int busId);
 
     /// <summary>
@@ -28,8 +24,6 @@ public interface IBusesContextFacade
     /// <returns>
     /// The number of seats available in the bus if the bus is found; otherwise, -1.
     /// </returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
+    /// <author>Alison Arrieta</author>
     Task<int> FetchNumberOfSeatsByBusIdAsync(int busId);
 }

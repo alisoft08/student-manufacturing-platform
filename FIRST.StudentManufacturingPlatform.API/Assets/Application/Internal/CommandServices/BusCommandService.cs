@@ -6,16 +6,22 @@ using FIRST.StudentManufacturingPlatform.API.Shared.Domain.Repositories;
 
 namespace FIRST.StudentManufacturingPlatform.API.Assets.Application.Internal.CommandServices;
 
-
 /// <summary>
-/// Service responsible for handling bus creation commands and coordinating persistence operations.
+/// Implementation of the bus command service for handling bus creation operations.
+/// This service manages the business logic for creating buses, including validation of vehicle plate uniqueness
+/// and coordination of persistence operations with transaction management.
 /// </summary>
-/// <author>
-/// Alison Arrieta
-/// </author>
+/// <author>Alison Arrieta</author>
 public class BusCommandService(IBusRepository repository, IUnitOfWork unitOfWork) : IBusCommandService
 {
-    /// <inheritdoc />
+    /// <summary>
+    /// Handles the creation of a new bus with comprehensive validation and error handling.
+    /// Validates vehicle plate uniqueness and manages the complete bus creation workflow.
+    /// </summary>
+    /// <param name="command">The <see cref="CreateBusCommand"/> containing bus data including vehicle plate, fuel tank type, district ID, and total seats.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the created bus if all validations pass and persistence succeeds; otherwise, null.</returns>
+    /// <exception cref="Exception">Thrown when a bus with the same vehicle plate already exists.</exception>
+    /// <author>Alison Arrieta</author>
     public async Task<Bus?> Handle(CreateBusCommand command)
     {
 

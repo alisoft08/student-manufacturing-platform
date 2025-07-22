@@ -4,21 +4,18 @@ using FIRST.StudentManufacturingPlatform.API.Operations.Interfaces.REST.Resource
 namespace FIRST.StudentManufacturingPlatform.API.Operations.Interfaces.REST.Transform;
 
 /// <summary>
-/// Provides a method to convert a Assignment domain entity into a AssignmentResource for API responses.
+/// Static assembler class for transforming Assignment entities into AssignmentResource objects.
+/// Provides methods to convert domain entities to REST API resource representations.
 /// </summary>
-/// <remarks>
-/// Alison Jimena Arrieta Quispe
-/// </remarks>
+/// <author>Alison Arrieta</author>
 public static class AssignmentResourceFromEntityAssembler
 {
     /// <summary>
-    /// Converts a Assignment entity into its corresponding REST resource representation.
+    /// Transforms an Assignment entity into an AssignmentResource for REST API responses.
     /// </summary>
-    /// <param name="entity">The Assignment entity from the domain model.</param>
-    /// <returns>A AssignmentResource object containing the mapped values.</returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
+    /// <param name="entity">The Assignment entity to transform.</param>
+    /// <returns>An AssignmentResource containing the entity data formatted for API consumption.</returns>
+    /// <author>Alison Arrieta</author>
     public static AssignmentResource ToResourceFromEntity(Assignment entity)
     {
         return new AssignmentResource(

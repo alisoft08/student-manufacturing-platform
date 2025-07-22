@@ -8,28 +8,20 @@ using FIRST.StudentManufacturingPlatform.API.Shared.Domain.Repositories;
 namespace FIRST.StudentManufacturingPlatform.API.Operations.Application.Internal.CommandServices;
 
 /// <summary>
-/// Handles the creation of Assignment entities, applying business validations and coordinating persistence.
+/// Implementation of the assignment command service for handling assignment operations.
+/// This service manages the business logic for creating assignments between students and buses,
+/// including validation of student existence, bus availability, and capacity constraints.
 /// </summary>
-/// <remarks>
-/// Alison Jimena Arrieta Quispe
-/// </remarks>
 public class AssignmentCommandService(IAssignmentRepository repository, IUnitOfWork unitOfWork, IBusesContextFacade facade, IStudentRepository studentRepository)
     : IAssignmentCommandService
 {
     /// <summary>
-    /// Processes a command to create a new Assignment. Validates uniqueness and existence of related Bus entity.
+    /// Handles the creation of a new assignment with comprehensive validation.
+    /// Validates student existence, bus availability, capacity constraints, and sibling assignments.
     /// </summary>
-    /// <param name="command">The command containing data required to create a Assignment.</param>
-    /// <returns>
-    /// A task representing the asynchronous operation. Returns the created Assignment if successful; otherwise, throws exception.
-    /// </returns>
-    /// <exception cref="Exception">
-    /// Thrown if the Assignment already exists for the given item Bus number, batch ID, and Bill of Materials ID,
-    /// or if the related Bus is not found.
-    /// </exception>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
+    /// <param name="command">The create assignment command containing student and bus identifiers.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the created assignment if all validations pass.</returns>
+    /// <exception cref="Exception">Thrown when student doesn't exist, bus doesn't exist, bus capacity is exceeded, assignment already exists, or sibling validation fails.</exception>
     public async Task<Assignment?> Handle(CreateAssignmentCommand command)
     {
         // Validate that the student exists
@@ -52,17 +44,20 @@ public class AssignmentCommandService(IAssignmentRepository repository, IUnitOfW
         // Validate that the assignment does not already exist for the student
         if (await repository.ExistsByStudentIdAsync(command.studentId)) throw new Exception($"Assignment with Student ID {command.studentId} already exists.");
         
-        // Validate that the parent of the student does not already have a student assigned in another bus          
+        // Validate if the parent of the student has another child
         var idParent = student.GetParentId();
-
         var studentSibling = await studentRepository.FindByParentIdAsync(idParent);
         
-        // If student sibling exists, check if they are assigned to a different bus
-        if (studentSibling != null)
+        if (studentSibling is not null)
         {
+            // If the student has a sibling, check if they are already assigned to a bus
+            
             var siblingAssignment = await repository.FindByStudentIdAsync(studentSibling.Id);
-            if (siblingAssignment != null)
+            
+            if (siblingAssignment is not null)
             {
+                // If student sibling assignment exists, check if they are assigned to a different bus
+
                 var siblingBusId = siblingAssignment.GetBusId();
                 if (siblingBusId != command.busId)
                 {

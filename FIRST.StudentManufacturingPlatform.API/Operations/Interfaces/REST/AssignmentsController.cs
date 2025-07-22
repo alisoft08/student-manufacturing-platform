@@ -8,11 +8,10 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace FIRST.StudentManufacturingPlatform.API.Operations.Interfaces.REST;
 
 /// <summary>
-/// Exposes RESTful endpoints for managing Assignment entities in the Operations context.
+/// REST API controller for managing assignment operations in the student manufacturing platform.
+/// Provides endpoints for creating and managing assignments between students and buses.
 /// </summary>
-/// <remarks>
-/// Alison Jimena Arrieta Quispe
-/// </remarks>
+/// <author>Alison Arrieta</author>
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
@@ -21,20 +20,17 @@ public class AssignmentsController(IAssignmentCommandService AssignmentCommandSe
     : ControllerBase
 {
     /// <summary>
-    /// Creates a new Assignment entity based on the provided input resource.
+    /// Creates a new assignment between a student and a specific bus.
     /// </summary>
-    /// <param name="resource">The resource containing the data to create the Assignment.</param>
-    /// <returns>
-    /// A 201 Created response with the created AssignmentResource if successful; otherwise, 400 BadRequest.
-    /// </returns>
-    /// <remarks>
-    /// Alison Jimena Arrieta Quispe
-    /// </remarks>
+    /// <param name="busId">The unique identifier of the bus to assign the student to.</param>
+    /// <param name="resource">The assignment resource containing the student information.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the created assignment resource if successful, or a bad request response if creation fails.</returns>
+    /// <author>Alison Arrieta</author>
     [HttpPost("/api/v1/buses/{busId}/assignments")]
     [SwaggerOperation("Create Assignment", "Create a new Assignment.", OperationId = "CreateAssignment")]
     [SwaggerResponse(201, "The Assignment was created.", typeof(AssignmentResource))]
     [SwaggerResponse(400, "The Assignment was not created.")]
-    public async Task<IActionResult> CreateAssignment(int busId, [FromBody] CreateAssignmentResource resource)
+    public async Task<IActionResult> CreateAssignment([FromRoute] int busId, [FromBody] CreateAssignmentResource resource)
     {
         var createAssignmentCommand = CreateAssignmentCommandFromResourceAssembler.ToCommandFromResource(resource, busId);
         var Assignment = await AssignmentCommandService.Handle(createAssignmentCommand);

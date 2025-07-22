@@ -9,19 +9,14 @@ namespace FIRST.StudentManufacturingPlatform.API.Operations.Infrastructure.Persi
 /// <summary>
 /// Provides methods for accessing and managing Assignment entities in the database.
 /// </summary>
-/// <remarks>
-/// Alison Jimena Arrieta Quispe
-/// </remarks>
+/// <author>
+/// Alison Arrieta
+/// </author>
 public class AssignmentRepository(AppDbContext context)
     : BaseRepository<Assignment>(context), IAssignmentRepository
 {
-
-  
-    /// <summary>
-    /// Checks if an assignment exists for the specified student identifier.
-    /// </summary>
-    /// <param name="studentId">The unique identifier of the student.</param>
-    /// <returns>True if an assignment exists for the student; otherwise, false.</returns>
+    
+    /// <inheritdoc />
     public async Task<bool> ExistsByStudentIdAsync(int studentId)
     {
         return await Context.Set<Assignment>()
@@ -29,17 +24,14 @@ public class AssignmentRepository(AppDbContext context)
                 Assignment.StudentId == studentId);
     }
 
-    /// <summary>
-    /// Counts the number of assignments for a specific bus identifier.
-    /// </summary>
-    /// <param name="busId">The unique identifier of the bus.</param>
-    /// <returns>The number of assignments for the bus.</returns>
+   /// <inheritdoc />
     public async Task<int> CountByBusIdAsync(int busId)
     {
         return await Context.Set<Assignment>()
             .CountAsync(a => a.BusId == busId);
     }
-
+   
+    /// <inheritdoc />
     public async Task<Assignment?> FindByStudentIdAsync(int studentId)
     {
         return await Context.Set<Assignment>()

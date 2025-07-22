@@ -9,9 +9,9 @@ namespace FIRST.StudentManufacturingPlatform.API.Operations.Infrastructure.Persi
 /// <summary>
 /// Provides methods for accessing and managing Student entities in the database.
 /// </summary>
-/// <remarks>
-/// Alison Jimena Arrieta Quispe
-/// </remarks>
+/// <author>
+/// Alison Arrieta
+/// </author>
 public class StudentRepository(AppDbContext context) : BaseRepository<Student>(context), IStudentRepository
 {
     

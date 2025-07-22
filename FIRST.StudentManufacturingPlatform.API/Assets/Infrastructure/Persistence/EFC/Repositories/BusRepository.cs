@@ -10,6 +10,7 @@ namespace FIRST.StudentManufacturingPlatform.API.Assets.Infrastructure.Persisten
 public class BusRepository(AppDbContext context) : BaseRepository<Bus>(context), IBusRepository
 {
     
+    /// <inheritdoc />
     public async Task<bool> ExistsByVehiclePlateAsync(string vehiclePlate)
     {
         return await Context.Set<Bus>()
